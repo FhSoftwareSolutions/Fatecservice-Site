@@ -61,6 +61,13 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        "brand-dark": "hsl(213, 44%, 11%)",
+        "brand-darker": "hsl(214, 44%, 8%)",
+        "brand-primary": "hsl(43, 99%, 64%)",
+        "brand-primary-light": "hsl(43, 100%, 74%)",
+        "brand-secondary": "hsl(191, 100%, 44%)",
+        "brand-secondary-light": "hsl(193, 100%, 61%)",
+        "brand-gray": "hsl(210, 2%, 77%)",
       },
       keyframes: {
         "accordion-down": {

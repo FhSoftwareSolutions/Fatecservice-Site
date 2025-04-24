@@ -92,61 +92,8 @@
     font-family: 'Roboto', sans-serif;
   }
 
-  .bg-brand-dark {
-    background-color: hsl(var(--brand-dark));
-  }
-  
-  .bg-brand-darker {
-    background-color: hsl(var(--brand-darker));
-  }
-
-  .bg-brand-primary {
-    background-color: hsl(var(--brand-primary));
-  }
-  
-  .bg-brand-primary-light {
-    background-color: hsl(var(--brand-primary-light));
-  }
-  
-  .bg-brand-primary-dark {
-    background-color: hsl(var(--brand-primary-dark));
-  }
-  
-  .bg-brand-secondary {
-    background-color: hsl(var(--brand-secondary));
-  }
-  
-  .bg-brand-secondary-light {
-    background-color: hsl(var(--brand-secondary-light));
-  }
-  
-  .bg-brand-secondary-dark {
-    background-color: hsl(var(--brand-secondary-dark));
-  }
-  
-  .text-brand-primary {
-    color: hsl(var(--brand-primary));
-  }
-  
-  .text-brand-primary-light {
-    color: hsl(var(--brand-primary-light));
-  }
-  
-  .text-brand-secondary {
-    color: hsl(var(--brand-secondary));
-  }
-  
-  .text-brand-gray {
-    color: hsl(var(--brand-gray));
-  }
-  
-  .border-brand-primary {
-    border-color: hsl(var(--brand-primary));
-  }
-  
-  .border-brand-secondary {
-    border-color: hsl(var(--brand-secondary));
-  }
+  /* Não precisamos mais dessas classes, pois o Tailwind já vai gerar essas classes a partir
+  das configurações no tailwind.config.ts */
 
   /* Custom animations */
   .animate-float {
@@ -232,7 +179,7 @@
     left: 0;
     width: 0;
     height: 2px;
-    background-color: hsl(var(--brand-primary));
+    background-color: theme('colors.brand-primary');
     transition: width 0.3s ease;
   }
   
@@ -247,16 +194,16 @@
   }
   
   ::-webkit-scrollbar-track {
-    background: hsl(var(--brand-dark));
+    background: theme('colors.brand-dark');
   }
   
   ::-webkit-scrollbar-thumb {
-    background: hsl(var(--brand-secondary));
+    background: theme('colors.brand-secondary');
     border-radius: 5px;
   }
   
   ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--brand-primary));
+    background: theme('colors.brand-primary');
   }
 
   /* Feature card animation */
@@ -321,8 +268,8 @@
     position: absolute;
     top: 10px;
     right: -35px;
-    background: hsl(var(--brand-primary));
-    color: hsl(var(--brand-dark));
+    background: theme('colors.brand-primary');
+    color: theme('colors.brand-dark');
     padding: 5px 40px;
     transform: rotate(45deg);
     font-weight: bold;
@@ -331,7 +278,7 @@
   
   /* Text gradient */
   .text-gradient {
-    background: linear-gradient(90deg, hsl(var(--brand-secondary)), hsl(var(--brand-primary)));
+    background: linear-gradient(90deg, theme('colors.brand-secondary'), theme('colors.brand-primary'));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
