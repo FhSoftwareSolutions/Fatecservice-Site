@@ -248,7 +248,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           month: 'long',
           year: 'numeric'
         }),
-        image: item.image_url || 'https://images.unsplash.com/photo-1523961131990-5ea7c61b2107',
+        image: item.image_url && !item.image_url.includes('svg+xml') ? item.image_url : 'https://images.unsplash.com/photo-1523961131990-5ea7c61b2107',
         category: item.category,
         featured: item.featured,
         source: item.source_name
@@ -290,7 +290,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           month: 'long',
           year: 'numeric'
         }),
-        image: newsItem.image_url || 'https://images.unsplash.com/photo-1523961131990-5ea7c61b2107',
+        image: newsItem.image_url && !newsItem.image_url.includes('svg+xml') ? newsItem.image_url : 'https://images.unsplash.com/photo-1523961131990-5ea7c61b2107',
         category: newsItem.category,
         author: newsItem.source_name,
         featured: newsItem.featured,
