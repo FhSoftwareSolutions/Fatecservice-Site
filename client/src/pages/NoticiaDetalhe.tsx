@@ -114,9 +114,14 @@ const NoticiaDetalhe = () => {
               {/* Hero Image */}
               <div className="rounded-xl overflow-hidden mb-10 shadow-xl">
                 <img 
-                  src={data.image} 
+                  src={data.image || 'https://images.unsplash.com/photo-1579567761406-4684ee0c75b6?q=80&w=1287&auto=format&fit=crop'} 
                   alt={data.title} 
                   className="w-full h-auto object-cover"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.onerror = null;
+                    target.src = 'https://images.unsplash.com/photo-1579567761406-4684ee0c75b6?q=80&w=1287&auto=format&fit=crop';
+                  }}
                 />
               </div>
               
@@ -182,29 +187,6 @@ const NoticiaDetalhe = () => {
                     Fale conosco
                     <i className="fas fa-arrow-right ml-2"></i>
                   </Link>
-                </div>
-                
-                <div className="bg-[#182b3e] rounded-xl overflow-hidden shadow-lg p-6">
-                  <h3 className="text-xl font-bold mb-6 pb-4 border-b border-gray-800">
-                    Newsletter
-                  </h3>
-                  <p className="text-brand-gray mb-6">
-                    Receba as últimas notícias e novidades diretamente no seu e-mail.
-                  </p>
-                  <form className="space-y-4">
-                    <input 
-                      type="email" 
-                      placeholder="Seu e-mail" 
-                      className="w-full px-4 py-3 bg-brand-dark text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-primary border border-gray-700"
-                      required
-                    />
-                    <button 
-                      type="submit" 
-                      className="w-full px-4 py-3 bg-brand-primary text-brand-dark font-semibold rounded-lg hover:bg-brand-primary-light transition-colors duration-300"
-                    >
-                      Inscrever-se
-                    </button>
-                  </form>
                 </div>
               </div>
             </div>

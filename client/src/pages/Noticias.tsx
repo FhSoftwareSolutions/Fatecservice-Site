@@ -175,6 +175,11 @@ const Noticias = () => {
                         src={noticia.image || 'https://images.unsplash.com/photo-1579567761406-4684ee0c75b6?q=80&w=1287&auto=format&fit=crop'} 
                         alt={noticia.title} 
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.onerror = null;
+                          target.src = 'https://images.unsplash.com/photo-1579567761406-4684ee0c75b6?q=80&w=1287&auto=format&fit=crop';
+                        }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-r from-[#182b3e] to-transparent opacity-40"></div>
                     </div>
@@ -249,6 +254,11 @@ const Noticias = () => {
                       src={noticia.image || 'https://images.unsplash.com/photo-1579567761406-4684ee0c75b6?q=80&w=1287&auto=format&fit=crop'} 
                       alt={noticia.title} 
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.onerror = null;
+                        target.src = 'https://images.unsplash.com/photo-1579567761406-4684ee0c75b6?q=80&w=1287&auto=format&fit=crop';
+                      }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#182b3e] to-transparent opacity-60"></div>
                     <div className="absolute top-4 left-4">
