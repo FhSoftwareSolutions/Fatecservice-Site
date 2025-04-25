@@ -222,51 +222,41 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get news
-  app.get("/api/news", (req: Request, res: Response) => {
+  app.get("/api/news", async (req: Request, res: Response) => {
     try {
-      // In a real application, this would come from a database
-      const news = [
-        {
-          id: 1,
-          title: "FH Software Solutions é reconhecida como uma das empresas mais inovadoras do setor de TI",
-          excerpt: "Nossa empresa recebeu o prêmio de inovação em desenvolvimento de software pela terceira vez consecutiva, destacando nosso compromisso com a excelência e inovação contínua.",
-          date: "15 de Maio de 2024",
-          image: "https://images.unsplash.com/photo-1523961131990-5ea7c61b2107",
-          category: "Reconhecimento",
-          featured: true
-        },
-        {
-          id: 2,
-          title: "Como a Inteligência Artificial está transformando o desenvolvimento de software em 2024",
-          excerpt: "Descubra como estamos integrando tecnologias de IA em nossos projetos para oferecer soluções mais inteligentes e eficientes para nossos clientes.",
-          date: "03 de Abril de 2024",
-          image: "https://images.unsplash.com/photo-1593642634367-d91a135587b5",
-          category: "Tecnologia"
-        },
-        {
-          id: 3,
-          title: "Tendências de desenvolvimento mobile para ficar de olho neste ano",
-          excerpt: "Conheça as tecnologias e metodologias que estão definindo o futuro do desenvolvimento de aplicativos móveis e como podem beneficiar seu negócio.",
-          date: "26 de Março de 2024",
-          image: "https://images.unsplash.com/photo-1526498460520-4c246339dccb",
-          category: "Mobile"
-        }
-      ];
-      
       const { featured, limit } = req.query;
-      let result = news;
+      let newsItems;
       
       if (featured === 'true') {
-        result = news.filter(item => item.featured);
+        // Buscar notícias em destaque
+        newsItems = await storage.getFeaturedNews(
+          limit ? parseInt(limit as string) : undefined
+        );
+      } else {
+        // Buscar todas as notícias com limite opcional
+        const limitNum = limit ? parseInt(limit as string) : undefined;
+        newsItems = await storage.getLatestNews(limitNum);
       }
       
-      if (limit && !isNaN(Number(limit))) {
-        result = result.slice(0, Number(limit));
-      }
+      // Formatar para front-end
+      const formattedNews = newsItems.map(item => ({
+        id: item.id,
+        title: item.title,
+        excerpt: item.summary,
+        date: item.published_at.toLocaleDateString('pt-BR', {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric'
+        }),
+        image: item.image_url || 'https://images.unsplash.com/photo-1523961131990-5ea7c61b2107',
+        category: item.category,
+        featured: item.featured,
+        source: item.source_name
+      }));
       
       res.json({ 
         status: "success", 
-        data: result 
+        data: formattedNews 
       });
     } catch (error) {
       console.error("Error fetching news:", error);
@@ -278,25 +268,38 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get single news article
-  app.get("/api/news/:id", (req: Request, res: Response) => {
+  app.get("/api/news/:id", async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
+      const newsItem = await storage.getNewsById(parseInt(id));
       
-      // In a real application, this would come from a database lookup
-      const newsItem = {
-        id: Number(id),
-        title: "FH Software Solutions é reconhecida como uma das empresas mais inovadoras do setor de TI",
-        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget ultricies aliquam, nunc nisl aliquet nunc, quis aliquam nisl nunc quis nisl. Nullam euismod, nisl eget ultricies aliquam, nunc nisl aliquet nunc, quis aliquam nisl nunc quis nisl.",
-        date: "15 de Maio de 2024",
-        image: "https://images.unsplash.com/photo-1523961131990-5ea7c61b2107",
-        category: "Reconhecimento",
-        author: "Equipe FH Software",
-        featured: true
+      if (!newsItem) {
+        return res.status(404).json({ 
+          status: "error", 
+          message: "Notícia não encontrada" 
+        });
+      }
+      
+      // Formatar para front-end
+      const formattedNews = {
+        id: newsItem.id,
+        title: newsItem.title,
+        content: newsItem.content,
+        date: newsItem.published_at.toLocaleDateString('pt-BR', {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric'
+        }),
+        image: newsItem.image_url || 'https://images.unsplash.com/photo-1523961131990-5ea7c61b2107',
+        category: newsItem.category,
+        author: newsItem.source_name,
+        featured: newsItem.featured,
+        source_url: newsItem.source_url
       };
       
       res.json({ 
         status: "success", 
-        data: newsItem 
+        data: formattedNews 
       });
     } catch (error) {
       console.error("Error fetching news item:", error);
