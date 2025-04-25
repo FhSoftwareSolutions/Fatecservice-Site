@@ -12,6 +12,7 @@ import Sobre from "@/pages/Sobre";
 import Servicos from "@/pages/Servicos";
 import Projetos from "@/pages/Projetos";
 import Noticias from "@/pages/Noticias";
+import NoticiaDetalhe from "@/pages/NoticiaDetalhe";
 import { useEffect, useState } from "react";
 
 function Router() {
@@ -23,6 +24,7 @@ function Router() {
       <Route path="/servicos" component={Servicos} />
       <Route path="/projetos" component={Projetos} />
       <Route path="/noticias" component={Noticias} />
+      <Route path="/noticias/:id" component={NoticiaDetalhe} />
       <Route component={NotFound} />
     </Switch>
   );

@@ -1,58 +1,83 @@
 import { Link } from "wouter";
+import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 
-const noticias = [
-  {
-    id: 1,
-    title: "FH Software Solutions é reconhecida como uma das empresas mais inovadoras do setor de TI",
-    excerpt: "Nossa empresa recebeu o prêmio de inovação em desenvolvimento de software pela terceira vez consecutiva, destacando nosso compromisso com a excelência e inovação contínua.",
-    date: "15 de Maio de 2024",
-    image: "https://images.unsplash.com/photo-1523961131990-5ea7c61b2107",
-    category: "Reconhecimento",
-    featured: true
-  },
-  {
-    id: 2,
-    title: "Como a Inteligência Artificial está transformando o desenvolvimento de software em 2024",
-    excerpt: "Descubra como estamos integrando tecnologias de IA em nossos projetos para oferecer soluções mais inteligentes e eficientes para nossos clientes.",
-    date: "03 de Abril de 2024",
-    image: "https://images.unsplash.com/photo-1593642634367-d91a135587b5",
-    category: "Tecnologia"
-  },
-  {
-    id: 3,
-    title: "Tendências de desenvolvimento mobile para ficar de olho neste ano",
-    excerpt: "Conheça as tecnologias e metodologias que estão definindo o futuro do desenvolvimento de aplicativos móveis e como podem beneficiar seu negócio.",
-    date: "26 de Março de 2024",
-    image: "https://images.unsplash.com/photo-1526498460520-4c246339dccb",
-    category: "Mobile"
-  },
-  {
-    id: 4,
-    title: "FH Software Solutions anuncia parceria estratégica com gigante do e-commerce",
-    excerpt: "Nossa empresa firmou uma parceria estratégica para fornecer soluções de software personalizadas para uma das maiores empresas de e-commerce do Brasil.",
-    date: "18 de Março de 2024",
-    image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf",
-    category: "Parceria"
-  },
-  {
-    id: 5,
-    title: "A importância da experiência do usuário no desenvolvimento de software",
-    excerpt: "Entenda por que investir em UX/UI pode ser o diferencial competitivo que seu projeto precisa e como implementamos essas práticas em nossos produtos.",
-    date: "05 de Março de 2024",
-    image: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c",
-    category: "UX/UI Design"
-  },
-  {
-    id: 6,
-    title: "FH Software Solutions expande operações com novo escritório em Campinas",
-    excerpt: "Para atender à crescente demanda por nossos serviços, inauguramos um novo escritório em Campinas, ampliando nossa capacidade de atendimento no interior de São Paulo.",
-    date: "20 de Fevereiro de 2024",
-    image: "https://images.unsplash.com/photo-1577412647305-991150c7d163",
-    category: "Expansão"
-  }
-];
+// Tipo para as notícias
+interface Noticia {
+  id: number;
+  title: string;
+  excerpt: string;
+  date: string;
+  image: string;
+  category: string;
+  featured: boolean;
+  source?: string;
+}
+
+// Hook para filtrar notícias
+function useFilteredNews(categoryFilter: string = "") {
+  // Buscar notícias em destaque
+  const featuredNewsQuery = useQuery({
+    queryKey: ["/api/news", "featured"],
+    queryFn: async () => {
+      const response = await fetch("/api/news?featured=true");
+      if (!response.ok) {
+        throw new Error("Falha ao carregar notícias em destaque");
+      }
+      const data = await response.json();
+      return data.data as Noticia[];
+    }
+  });
+  
+  // Buscar notícias recentes (não em destaque)
+  const recentNewsQuery = useQuery({
+    queryKey: ["/api/news", "all"],
+    queryFn: async () => {
+      const response = await fetch("/api/news");
+      if (!response.ok) {
+        throw new Error("Falha ao carregar notícias recentes");
+      }
+      const data = await response.json();
+      return data.data as Noticia[];
+    }
+  });
+  
+  // Filtrar por categoria se necessário
+  const filteredRecent = recentNewsQuery.data
+    ? categoryFilter 
+      ? recentNewsQuery.data.filter(n => 
+          n.category.toLowerCase() === categoryFilter.toLowerCase())
+      : recentNewsQuery.data
+    : [];
+  
+  return {
+    featured: featuredNewsQuery.data || [],
+    recent: filteredRecent,
+    isLoading: featuredNewsQuery.isLoading || recentNewsQuery.isLoading,
+    isError: featuredNewsQuery.isError || recentNewsQuery.isError
+  };
+}
 
 const Noticias = () => {
+  const [categoryFilter, setCategoryFilter] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const { featured, recent, isLoading, isError } = useFilteredNews(categoryFilter);
+  
+  // Função para filtrar notícias pela barra de busca
+  const filteredRecent = recent.filter(noticia => 
+    searchQuery === "" || 
+    noticia.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    noticia.excerpt.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+  
+  // Definir categorias disponíveis a partir das notícias carregadas
+  const allCategories = Array.from(
+    new Set([
+      ...featured.map(n => n.category),
+      ...recent.map(n => n.category)
+    ])
+  ).filter(Boolean);
+  
   return (
     <>
       {/* Page Header */}
@@ -74,18 +99,29 @@ const Noticias = () => {
         <div className="container mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex flex-wrap justify-center gap-4">
-              <button className="px-6 py-2 bg-brand-dark hover:bg-brand-secondary text-white rounded-full transition-colors duration-300 border border-brand-secondary">
+              <button 
+                onClick={() => setCategoryFilter("")}
+                className={`px-6 py-2 text-white rounded-full transition-colors duration-300 border ${
+                  categoryFilter === "" 
+                    ? "bg-brand-dark border-brand-secondary" 
+                    : "bg-transparent border-gray-700 hover:border-brand-secondary hover:bg-brand-dark"
+                }`}
+              >
                 Todos
               </button>
-              <button className="px-6 py-2 bg-transparent hover:bg-brand-dark text-white rounded-full transition-colors duration-300 border border-gray-700 hover:border-brand-secondary">
-                Tecnologia
-              </button>
-              <button className="px-6 py-2 bg-transparent hover:bg-brand-dark text-white rounded-full transition-colors duration-300 border border-gray-700 hover:border-brand-secondary">
-                Inovação
-              </button>
-              <button className="px-6 py-2 bg-transparent hover:bg-brand-dark text-white rounded-full transition-colors duration-300 border border-gray-700 hover:border-brand-secondary">
-                Cases
-              </button>
+              {allCategories.map(category => (
+                <button 
+                  key={category}
+                  onClick={() => setCategoryFilter(category)}
+                  className={`px-6 py-2 text-white rounded-full transition-colors duration-300 border ${
+                    categoryFilter === category 
+                      ? "bg-brand-dark border-brand-secondary" 
+                      : "bg-transparent border-gray-700 hover:border-brand-secondary hover:bg-brand-dark"
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
             </div>
             
             <div className="w-full md:w-auto">
@@ -93,6 +129,8 @@ const Noticias = () => {
                 <input 
                   type="text" 
                   placeholder="Buscar notícias..." 
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full px-5 py-3 pr-12 bg-[#182b3e] text-white rounded-full border border-gray-700 focus:outline-none focus:border-brand-secondary transition-colors duration-300"
                 />
                 <button className="absolute right-4 top-1/2 transform -translate-y-1/2 text-brand-gray hover:text-brand-secondary transition-colors duration-300">
@@ -112,52 +150,66 @@ const Noticias = () => {
             Notícias em Destaque
           </h2>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-            {noticias.filter(noticia => noticia.featured).map((noticia) => (
-              <div 
-                key={noticia.id} 
-                className="featured-news bg-[#182b3e] rounded-xl overflow-hidden shadow-lg highlight-card hover-lift group"
-              >
-                <div className="grid grid-cols-1 md:grid-cols-2 h-full">
-                  <div className="relative overflow-hidden h-64 md:h-full">
-                    <img 
-                      src={noticia.image} 
-                      alt={noticia.title} 
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#182b3e] to-transparent opacity-40"></div>
-                  </div>
-                  
-                  <div className="p-8 flex flex-col justify-between">
-                    <div>
-                      <div className="flex justify-between items-center mb-4">
-                        <span className="px-4 py-1 bg-brand-primary text-brand-dark text-sm font-medium rounded-full">
-                          {noticia.category}
-                        </span>
-                        <span className="text-brand-gray text-sm">{noticia.date}</span>
-                      </div>
-                      
-                      <h3 className="text-xl font-bold mb-4 group-hover:text-brand-secondary transition-colors duration-300">
-                        {noticia.title}
-                      </h3>
-                      
-                      <p className="text-brand-gray mb-6">
-                        {noticia.excerpt}
-                      </p>
+          {isLoading ? (
+            <div className="flex justify-center items-center py-20">
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand-primary"></div>
+            </div>
+          ) : isError ? (
+            <div className="p-8 text-center">
+              <p className="text-red-500 font-medium">Erro ao carregar notícias. Tente novamente mais tarde.</p>
+            </div>
+          ) : featured.length === 0 ? (
+            <div className="p-8 text-center">
+              <p className="text-brand-gray">Nenhuma notícia em destaque disponível no momento.</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+              {featured.map((noticia) => (
+                <div 
+                  key={noticia.id} 
+                  className="featured-news bg-[#182b3e] rounded-xl overflow-hidden shadow-lg highlight-card hover-lift group"
+                >
+                  <div className="grid grid-cols-1 md:grid-cols-2 h-full">
+                    <div className="relative overflow-hidden h-64 md:h-full">
+                      <img 
+                        src={noticia.image} 
+                        alt={noticia.title} 
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-r from-[#182b3e] to-transparent opacity-40"></div>
                     </div>
                     
-                    <Link 
-                      href={`/noticias/${noticia.id}`}
-                      className="inline-flex items-center text-brand-primary hover:text-brand-primary-light transition-colors duration-300 font-medium group"
-                    >
-                      Ler mais
-                      <i className="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform duration-300"></i>
-                    </Link>
+                    <div className="p-8 flex flex-col justify-between">
+                      <div>
+                        <div className="flex justify-between items-center mb-4">
+                          <span className="px-4 py-1 bg-brand-primary text-brand-dark text-sm font-medium rounded-full">
+                            {noticia.category}
+                          </span>
+                          <span className="text-brand-gray text-sm">{noticia.date}</span>
+                        </div>
+                        
+                        <h3 className="text-xl font-bold mb-4 group-hover:text-brand-secondary transition-colors duration-300">
+                          {noticia.title}
+                        </h3>
+                        
+                        <p className="text-brand-gray mb-6">
+                          {noticia.excerpt}
+                        </p>
+                      </div>
+                      
+                      <Link 
+                        href={`/noticias/${noticia.id}`}
+                        className="inline-flex items-center text-brand-primary hover:text-brand-primary-light transition-colors duration-300 font-medium group"
+                      >
+                        Ler mais
+                        <i className="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform duration-300"></i>
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -169,63 +221,90 @@ const Noticias = () => {
             Notícias Recentes
           </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {noticias.filter(noticia => !noticia.featured).map((noticia) => (
-              <div 
-                key={noticia.id} 
-                className="bg-[#182b3e] rounded-xl overflow-hidden shadow-lg news-card group"
-              >
-                <div className="relative h-48 overflow-hidden">
-                  <img 
-                    src={noticia.image} 
-                    alt={noticia.title} 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#182b3e] to-transparent opacity-60"></div>
-                  <div className="absolute top-4 left-4">
-                    <span className="px-4 py-1 bg-brand-secondary text-white text-sm font-medium rounded-full">
-                      {noticia.category}
-                    </span>
+          {isLoading ? (
+            <div className="flex justify-center items-center py-20">
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand-secondary"></div>
+            </div>
+          ) : isError ? (
+            <div className="p-8 text-center">
+              <p className="text-red-500 font-medium">Erro ao carregar notícias. Tente novamente mais tarde.</p>
+            </div>
+          ) : filteredRecent.length === 0 ? (
+            <div className="p-8 text-center">
+              <p className="text-brand-gray">
+                {searchQuery || categoryFilter 
+                  ? "Nenhuma notícia corresponde aos critérios de busca."
+                  : "Nenhuma notícia disponível no momento."}
+              </p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredRecent.map((noticia) => (
+                <div 
+                  key={noticia.id} 
+                  className="bg-[#182b3e] rounded-xl overflow-hidden shadow-lg news-card group"
+                >
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={noticia.image} 
+                      alt={noticia.title} 
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#182b3e] to-transparent opacity-60"></div>
+                    <div className="absolute top-4 left-4">
+                      <span className="px-4 py-1 bg-brand-secondary text-white text-sm font-medium rounded-full">
+                        {noticia.category}
+                      </span>
+                    </div>
+                    {noticia.source && (
+                      <div className="absolute bottom-4 right-4">
+                        <span className="px-3 py-1 bg-black/50 text-white text-xs rounded-full backdrop-blur-sm">
+                          {noticia.source}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                  
+                  <div className="p-6">
+                    <div className="text-brand-gray text-sm mb-3">{noticia.date}</div>
+                    
+                    <h3 className="text-xl font-bold mb-4 group-hover:text-brand-primary transition-colors duration-300">
+                      {noticia.title}
+                    </h3>
+                    
+                    <p className="text-brand-gray mb-6 line-clamp-3">
+                      {noticia.excerpt}
+                    </p>
+                    
+                    <Link 
+                      href={`/noticias/${noticia.id}`}
+                      className="inline-flex items-center text-brand-secondary hover:text-brand-secondary-light transition-colors duration-300 text-sm font-medium group"
+                    >
+                      Ler mais
+                      <i className="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform duration-300"></i>
+                    </Link>
                   </div>
                 </div>
-                
-                <div className="p-6">
-                  <div className="text-brand-gray text-sm mb-3">{noticia.date}</div>
-                  
-                  <h3 className="text-xl font-bold mb-4 group-hover:text-brand-primary transition-colors duration-300">
-                    {noticia.title}
-                  </h3>
-                  
-                  <p className="text-brand-gray mb-6 line-clamp-3">
-                    {noticia.excerpt}
-                  </p>
-                  
-                  <Link 
-                    href={`/noticias/${noticia.id}`}
-                    className="inline-flex items-center text-brand-secondary hover:text-brand-secondary-light transition-colors duration-300 text-sm font-medium group"
-                  >
-                    Ler mais
-                    <i className="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform duration-300"></i>
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-          
-          {/* Pagination */}
-          <div className="flex justify-center mt-16">
-            <div className="flex space-x-2">
-              <button className="w-10 h-10 rounded-full bg-brand-dark text-white flex items-center justify-center hover:bg-brand-secondary transition-colors duration-300">
-                <i className="fas fa-chevron-left"></i>
-              </button>
-              <button className="w-10 h-10 rounded-full bg-brand-secondary text-white flex items-center justify-center">1</button>
-              <button className="w-10 h-10 rounded-full bg-brand-dark text-white flex items-center justify-center hover:bg-brand-secondary transition-colors duration-300">2</button>
-              <button className="w-10 h-10 rounded-full bg-brand-dark text-white flex items-center justify-center hover:bg-brand-secondary transition-colors duration-300">3</button>
-              <button className="w-10 h-10 rounded-full bg-brand-dark text-white flex items-center justify-center hover:bg-brand-secondary transition-colors duration-300">
-                <i className="fas fa-chevron-right"></i>
-              </button>
+              ))}
             </div>
-          </div>
+          )}
+          
+          {/* Pagination - somente mostrar se houver mais de 9 itens */}
+          {filteredRecent.length > 9 && (
+            <div className="flex justify-center mt-16">
+              <div className="flex space-x-2">
+                <button className="w-10 h-10 rounded-full bg-brand-dark text-white flex items-center justify-center hover:bg-brand-secondary transition-colors duration-300">
+                  <i className="fas fa-chevron-left"></i>
+                </button>
+                <button className="w-10 h-10 rounded-full bg-brand-secondary text-white flex items-center justify-center">1</button>
+                <button className="w-10 h-10 rounded-full bg-brand-dark text-white flex items-center justify-center hover:bg-brand-secondary transition-colors duration-300">2</button>
+                <button className="w-10 h-10 rounded-full bg-brand-dark text-white flex items-center justify-center hover:bg-brand-secondary transition-colors duration-300">3</button>
+                <button className="w-10 h-10 rounded-full bg-brand-dark text-white flex items-center justify-center hover:bg-brand-secondary transition-colors duration-300">
+                  <i className="fas fa-chevron-right"></i>
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
