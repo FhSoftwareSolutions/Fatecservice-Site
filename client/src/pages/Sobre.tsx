@@ -314,13 +314,6 @@ const Sobre = () => {
               </div>
             </div>
           </div>
-          
-          <div className="text-center mt-12">
-            <a href="/contato" className="inline-flex items-center px-8 py-4 bg-brand-primary text-brand-dark font-semibold rounded-full shadow-lg shadow-brand-primary/30 hover:bg-brand-primary-light hover:shadow-brand-primary/50 transition-all duration-300 btn-animate relative">
-              <span className="relative z-10">Faça parte da nossa equipe</span>
-              <i className="fas fa-arrow-right ml-2"></i>
-            </a>
-          </div>
         </div>
       </section>
     </>

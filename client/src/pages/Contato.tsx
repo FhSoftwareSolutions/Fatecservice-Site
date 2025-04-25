@@ -1,46 +1,4 @@
-import { useState } from "react";
-
 const Contato = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    projectType: '',
-    message: '',
-    terms: false
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-  };
-
-  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: checked
-    });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Form submission logic would go here
-    console.log("Form submitted:", formData);
-    alert("Mensagem enviada com sucesso! Entraremos em contato em breve.");
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      projectType: '',
-      message: '',
-      terms: false
-    });
-  };
 
   return (
     <>
@@ -60,119 +18,61 @@ const Contato = () => {
       <section className="py-16 px-6">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Formulário de Contato */}
+            {/* Entre em Contato */}
             <div className="bg-[#182b3e] rounded-xl shadow-lg p-8 highlight-card">
-              <h2 className="text-2xl font-bold mb-6">Envie sua <span className="text-brand-primary">mensagem</span></h2>
-              <p className="text-brand-gray mb-8">Preencha o formulário abaixo e nossa equipe entrará em contato o mais breve possível.</p>
+              <h2 className="text-2xl font-bold mb-6">Fale <span className="text-brand-primary">Conosco</span></h2>
+              <p className="text-brand-gray mb-8">Escolha uma das opções abaixo para entrar em contato. Estamos prontos para atender e transformar suas ideias em soluções digitais.</p>
               
-              <form id="contact-form" className="space-y-6" onSubmit={handleSubmit}>
-                {/* Nome */}
-                <div>
-                  <label htmlFor="name" className="block text-white mb-2">Nome completo *</label>
-                  <input 
-                    type="text" 
-                    id="name" 
-                    name="name" 
-                    required 
-                    className="w-full py-3 px-4 bg-brand-dark text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-secondary" 
-                    placeholder="Seu nome completo"
-                    value={formData.name}
-                    onChange={handleChange}
-                  />
-                </div>
+              <div className="space-y-8">
+                {/* WhatsApp */}
+                <a 
+                  href="https://wa.me/5511987654321" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center p-6 bg-gradient-to-r from-[#25D366]/20 to-[#25D366]/5 rounded-xl hover:scale-105 transition-transform duration-300 border border-[#25D366]/30"
+                >
+                  <div className="w-16 h-16 rounded-full bg-[#25D366] flex items-center justify-center mr-6 shadow-lg shadow-[#25D366]/20">
+                    <i className="fab fa-whatsapp text-white text-3xl"></i>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold mb-1">WhatsApp</h3>
+                    <p className="text-brand-gray">Atendimento rápido e direto</p>
+                    <p className="text-[#25D366] font-medium mt-2">Clique para conversar</p>
+                  </div>
+                </a>
+                
+                {/* Instagram */}
+                <a 
+                  href="https://instagram.com/fhsoftware" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center p-6 bg-gradient-to-r from-[#E1306C]/20 to-[#E1306C]/5 rounded-xl hover:scale-105 transition-transform duration-300 border border-[#E1306C]/30"
+                >
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-[#FCAF45] via-[#E1306C] to-[#833AB4] flex items-center justify-center mr-6 shadow-lg shadow-[#E1306C]/20">
+                    <i className="fab fa-instagram text-white text-3xl"></i>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold mb-1">Instagram</h3>
+                    <p className="text-brand-gray">Acompanhe nosso trabalho</p>
+                    <p className="text-[#E1306C] font-medium mt-2">@fhsoftware</p>
+                  </div>
+                </a>
                 
                 {/* Email */}
-                <div>
-                  <label htmlFor="email" className="block text-white mb-2">E-mail *</label>
-                  <input 
-                    type="email" 
-                    id="email" 
-                    name="email" 
-                    required 
-                    className="w-full py-3 px-4 bg-brand-dark text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-secondary" 
-                    placeholder="Seu e-mail"
-                    value={formData.email}
-                    onChange={handleChange}
-                  />
-                </div>
-                
-                {/* Telefone */}
-                <div>
-                  <label htmlFor="phone" className="block text-white mb-2">Telefone</label>
-                  <input 
-                    type="tel" 
-                    id="phone" 
-                    name="phone" 
-                    className="w-full py-3 px-4 bg-brand-dark text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-secondary" 
-                    placeholder="(XX) XXXXX-XXXX"
-                    value={formData.phone}
-                    onChange={handleChange}
-                  />
-                </div>
-                
-                {/* Tipo de Projeto */}
-                <div>
-                  <label htmlFor="projectType" className="block text-white mb-2">Tipo de projeto *</label>
-                  <select 
-                    id="projectType" 
-                    name="projectType" 
-                    required 
-                    className="w-full py-3 px-4 bg-brand-dark text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-secondary"
-                    value={formData.projectType}
-                    onChange={handleChange}
-                  >
-                    <option value="" disabled>Selecione uma opção</option>
-                    <option value="web">Desenvolvimento Web</option>
-                    <option value="mobile">Desenvolvimento Mobile</option>
-                    <option value="api">Integrações e APIs</option>
-                    <option value="consulting">Consultoria em TI</option>
-                    <option value="other">Outro</option>
-                  </select>
-                </div>
-                
-                {/* Mensagem */}
-                <div>
-                  <label htmlFor="message" className="block text-white mb-2">Mensagem *</label>
-                  <textarea 
-                    id="message" 
-                    name="message" 
-                    required 
-                    rows={5} 
-                    className="w-full py-3 px-4 bg-brand-dark text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-secondary" 
-                    placeholder="Descreva seu projeto ou dúvida"
-                    value={formData.message}
-                    onChange={handleChange}
-                  ></textarea>
-                </div>
-                
-                {/* Termos e condições */}
-                <div className="flex items-start">
-                  <input 
-                    type="checkbox" 
-                    id="terms" 
-                    name="terms" 
-                    required 
-                    className="mt-1 mr-3"
-                    checked={formData.terms}
-                    onChange={handleCheckboxChange}
-                  />
-                  <label htmlFor="terms" className="text-brand-gray text-sm">
-                    Concordo com a <a href="#" className="text-brand-secondary hover:text-brand-primary transition">Política de Privacidade</a> e autorizo o contato da FH Software Solutions *
-                  </label>
-                </div>
-                
-                {/* Botão de envio */}
-                <div>
-                  <button 
-                    type="submit" 
-                    className="w-full bg-brand-primary text-brand-dark font-bold py-3 px-6 rounded-lg hover:bg-brand-primary-light transition btn-animate relative"
-                  >
-                    <span className="relative z-10">Enviar Mensagem</span>
-                  </button>
-                </div>
-                
-                <p className="text-brand-gray text-sm">* Campos obrigatórios</p>
-              </form>
+                <a 
+                  href="mailto:contato@fhsoftware.com.br" 
+                  className="flex items-center p-6 bg-gradient-to-r from-[#4285F4]/20 to-[#4285F4]/5 rounded-xl hover:scale-105 transition-transform duration-300 border border-[#4285F4]/30"
+                >
+                  <div className="w-16 h-16 rounded-full bg-[#4285F4] flex items-center justify-center mr-6 shadow-lg shadow-[#4285F4]/20">
+                    <i className="fas fa-envelope text-white text-2xl"></i>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold mb-1">E-mail</h3>
+                    <p className="text-brand-gray">Mensagens e orçamentos</p>
+                    <p className="text-[#4285F4] font-medium mt-2">contato@fhsoftware.com.br</p>
+                  </div>
+                </a>
+              </div>
             </div>
             
             {/* Informações de Contato */}
