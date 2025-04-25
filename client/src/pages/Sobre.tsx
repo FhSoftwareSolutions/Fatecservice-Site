@@ -355,9 +355,14 @@ const Sobre = () => {
             <div className="bg-[#182b3e] rounded-xl overflow-hidden shadow-lg hover-lift group">
               <div className="relative">
                 <img
-                  src="/imagens/piaui.png"
+                  src="/src/assets/imagens/piaui.png"
                   alt="João Vinnycius Matos Monteiro"
                   className="w-full h-64 object-cover object-center group-hover:scale-110 transition-transform duration-500"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.onerror = null;
+                    target.src = 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e';
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#182b3e] to-transparent opacity-80"></div>
               </div>
@@ -393,9 +398,14 @@ const Sobre = () => {
             <div className="bg-[#182b3e] rounded-xl overflow-hidden shadow-lg hover-lift group">
               <div className="relative">
                 <img
-                  src="client/src/imagens/china.png"
+                  src="/src/assets/imagens/china.png"
                   alt="Gustavo Seidi Hono"
                   className="w-full h-64 object-cover object-center group-hover:scale-110 transition-transform duration-500"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.onerror = null;
+                    target.src = 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7';
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#182b3e] to-transparent opacity-80"></div>
               </div>
