@@ -25,30 +25,30 @@ const Sobre = () => {
               
               <div className="space-y-6 text-brand-gray">
                 <p>
-                  A FH Software Solutions nasceu em 2018 da visão de dois programadores apaixonados por tecnologia, Felipe Almeida e Henrique Costa, que acreditavam que o desenvolvimento de software poderia ser mais ágil, transparente e focado em resultados.
+                  A FH Software Solutions é uma empresa criada a partir de um grupo de amigos de faculdade do Big Data na Fatec Sunji Nishimura e surgiu a partir da ideia de criar soluções tecnologicas e serviços em 2025.
                 </p>
                 <p>
-                  Começamos como uma pequena consultoria de desenvolvimento web, atendendo a empresas locais em São Paulo. Com o passar dos anos, expandimos nossa atuação para o desenvolvimento mobile, integrações de sistemas e consultoria em tecnologia.
+                  Nosso objetivo é oferecer serviços de desenvolvimento web, automação de fluxos, desenvolvimento low-code, IoT e análise de dados, integrando tecnologias modernas com soluções práticas e eficientes.
                 </p>
                 <p>
-                  Hoje, contamos com uma equipe enxuta e altamente especializada de 7 profissionais dedicados, trabalhando de forma colaborativa para transformar ideias em soluções digitais inovadoras que impulsionam o crescimento dos nossos clientes.
+                  Contamos com uma equipe especializada de 6 profissionais dedicados, trabalhando de forma colaborativa para transformar ideias em soluções digitais inovadoras que impulsionam o crescimento dos nossos clientes.
                 </p>
               </div>
               
               <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="bg-[#182b3e] p-6 rounded-xl text-center hover-lift">
-                  <div className="text-4xl font-bold text-brand-primary mb-2">5+</div>
-                  <div className="text-brand-gray">Anos de experiência</div>
+                  <div className="text-4xl font-bold text-brand-primary mb-2">10+</div>
+                  <div className="text-brand-gray">Projetos planejados</div>
                 </div>
                 
                 <div className="bg-[#182b3e] p-6 rounded-xl text-center hover-lift">
-                  <div className="text-4xl font-bold text-brand-primary mb-2">100+</div>
-                  <div className="text-brand-gray">Projetos entregues</div>
+                  <div className="text-4xl font-bold text-brand-primary mb-2">6</div>
+                  <div className="text-brand-gray">Especialistas</div>
                 </div>
                 
                 <div className="bg-[#182b3e] p-6 rounded-xl text-center hover-lift">
-                  <div className="text-4xl font-bold text-brand-primary mb-2">50+</div>
-                  <div className="text-brand-gray">Clientes satisfeitos</div>
+                  <div className="text-4xl font-bold text-brand-primary mb-2">4</div>
+                  <div className="text-brand-gray">Áreas de atuação</div>
                 </div>
               </div>
             </div>
@@ -79,7 +79,7 @@ const Sobre = () => {
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-6">Missão, Visão e <span className="text-brand-primary">Valores</span></h2>
             <p className="text-brand-gray max-w-2xl mx-auto">
-              Os princípios que guiam nosso trabalho e nossa relação com clientes e parceiros
+              Os princípios cristãos que guiam nosso trabalho e nossa relação com clientes e parceiros
             </p>
             <div className="w-20 h-1 bg-brand-secondary mx-auto mt-6"></div>
           </div>
@@ -92,7 +92,7 @@ const Sobre = () => {
               </div>
               <h3 className="text-xl font-bold mb-4">Missão</h3>
               <p className="text-brand-gray">
-                Desenvolver soluções tecnológicas inovadoras que transformem e simplifiquem a maneira como as empresas e pessoas interagem no mundo digital, gerando valor real para nossos clientes.
+                Desenvolver soluções tecnológicas que transformem positivamente a vida das pessoas, servindo com excelência, integridade e respeito ao próximo, refletindo o amor e a dedicação que nos foram ensinados pelos valores cristãos.
               </p>
             </div>
             
@@ -103,7 +103,7 @@ const Sobre = () => {
               </div>
               <h3 className="text-xl font-bold mb-4">Visão</h3>
               <p className="text-brand-gray">
-                Ser reconhecida como uma referência nacional em desenvolvimento de software, conhecida pela excelência técnica, inovação contínua e capacidade de entregar soluções que superam as expectativas dos clientes.
+                Ser reconhecida como uma empresa que integra excelência técnica e valores cristãos na criação de soluções digitais, contribuindo para um mundo mais justo e acessível através da tecnologia e inspirando outros a seguirem o mesmo caminho.
               </p>
             </div>
             
@@ -116,23 +116,23 @@ const Sobre = () => {
               <ul className="text-brand-gray space-y-2">
                 <li className="flex items-start">
                   <i className="fas fa-check text-brand-primary mt-1 mr-2"></i>
-                  <span>Inovação e excelência técnica</span>
+                  <span>Integridade e transparência em todas as ações</span>
                 </li>
                 <li className="flex items-start">
                   <i className="fas fa-check text-brand-primary mt-1 mr-2"></i>
-                  <span>Transparência e honestidade</span>
+                  <span>Amor e respeito ao próximo em cada interação</span>
                 </li>
                 <li className="flex items-start">
                   <i className="fas fa-check text-brand-primary mt-1 mr-2"></i>
-                  <span>Foco no cliente e em resultados</span>
+                  <span>Excelência como forma de honrar nossos talentos</span>
                 </li>
                 <li className="flex items-start">
                   <i className="fas fa-check text-brand-primary mt-1 mr-2"></i>
-                  <span>Colaboração e trabalho em equipe</span>
+                  <span>Serviço humilde e dedicado aos clientes</span>
                 </li>
                 <li className="flex items-start">
                   <i className="fas fa-check text-brand-primary mt-1 mr-2"></i>
-                  <span>Aprendizado contínuo</span>
+                  <span>Responsabilidade e compromisso com cada projeto</span>
                 </li>
               </ul>
             </div>
@@ -146,34 +146,31 @@ const Sobre = () => {
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-6">Nossa <span className="text-brand-primary">Equipe</span></h2>
             <p className="text-brand-gray max-w-2xl mx-auto">
-              Conheça os 7 profissionais apaixonados por tecnologia que fazem parte da FH Software Solutions
+              Conheça os profissionais apaixonados por tecnologia que fazem parte da FH Software Solutions
             </p>
             <div className="w-20 h-1 bg-brand-secondary mx-auto mt-6"></div>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Membro 1 */}
             <div className="bg-[#182b3e] rounded-xl overflow-hidden shadow-lg hover-lift group">
               <div className="relative">
                 <img 
                   src="https://images.unsplash.com/photo-1560250097-0b93528c311a" 
-                  alt="Felipe Almeida - CEO" 
+                  alt="Mateus Robers Amaral" 
                   className="w-full h-64 object-cover object-center group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#182b3e] to-transparent opacity-80"></div>
               </div>
               <div className="p-6 relative -mt-16">
-                <h3 className="text-xl font-bold">Felipe Almeida</h3>
-                <p className="text-brand-primary mb-4">CEO & Co-Fundador</p>
+                <h3 className="text-xl font-bold">Mateus Robers Amaral</h3>
+                <p className="text-brand-primary mb-4">Desenvolvedor Web/Full-Stack</p>
                 <p className="text-brand-gray text-sm mb-4">
-                  Especialista em estratégia digital e desenvolvimento web com mais de 10 anos de experiência.
+                  Especialista em desenvolvimento web e soluções low-code com foco em usabilidade e experiência do usuário.
                 </p>
                 <div className="flex space-x-2">
                   <a href="#" className="text-brand-gray hover:text-brand-secondary transition-colors">
                     <i className="fab fa-linkedin-in"></i>
-                  </a>
-                  <a href="#" className="text-brand-gray hover:text-brand-secondary transition-colors">
-                    <i className="fab fa-twitter"></i>
                   </a>
                   <a href="#" className="text-brand-gray hover:text-brand-secondary transition-colors">
                     <i className="fab fa-github"></i>
@@ -187,23 +184,20 @@ const Sobre = () => {
               <div className="relative">
                 <img 
                   src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d" 
-                  alt="Henrique Costa - CTO" 
+                  alt="Jonah Nishimura Kunihiro" 
                   className="w-full h-64 object-cover object-center group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#182b3e] to-transparent opacity-80"></div>
               </div>
               <div className="p-6 relative -mt-16">
-                <h3 className="text-xl font-bold">Henrique Costa</h3>
-                <p className="text-brand-primary mb-4">CTO & Co-Fundador</p>
+                <h3 className="text-xl font-bold">Jonah Nishimura Kunihiro</h3>
+                <p className="text-brand-primary mb-4">Automatic Workflows/Low-code</p>
                 <p className="text-brand-gray text-sm mb-4">
-                  Desenvolvedor full-stack com experiência em arquitetura de software e soluções escaláveis.
+                  Especialista em automação de processos e desenvolvimento de fluxos usando ferramentas low-code.
                 </p>
                 <div className="flex space-x-2">
                   <a href="#" className="text-brand-gray hover:text-brand-secondary transition-colors">
                     <i className="fab fa-linkedin-in"></i>
-                  </a>
-                  <a href="#" className="text-brand-gray hover:text-brand-secondary transition-colors">
-                    <i className="fab fa-twitter"></i>
                   </a>
                   <a href="#" className="text-brand-gray hover:text-brand-secondary transition-colors">
                     <i className="fab fa-github"></i>
@@ -217,26 +211,23 @@ const Sobre = () => {
               <div className="relative">
                 <img 
                   src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e" 
-                  alt="Mariana Santos - UX/UI Designer" 
+                  alt="Luis Otavio Jassi Rodrigues" 
                   className="w-full h-64 object-cover object-center group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#182b3e] to-transparent opacity-80"></div>
               </div>
               <div className="p-6 relative -mt-16">
-                <h3 className="text-xl font-bold">Mariana Santos</h3>
-                <p className="text-brand-primary mb-4">UX/UI Designer</p>
+                <h3 className="text-xl font-bold">Luis Otavio Jassi Rodrigues</h3>
+                <p className="text-brand-primary mb-4">Especialista em IoT</p>
                 <p className="text-brand-gray text-sm mb-4">
-                  Designer especializada em experiência do usuário, interfaces intuitivas e design de produto.
+                  Especialista em soluções de Internet das Coisas, conectividade e automação de dispositivos.
                 </p>
                 <div className="flex space-x-2">
                   <a href="#" className="text-brand-gray hover:text-brand-secondary transition-colors">
                     <i className="fab fa-linkedin-in"></i>
                   </a>
                   <a href="#" className="text-brand-gray hover:text-brand-secondary transition-colors">
-                    <i className="fab fa-twitter"></i>
-                  </a>
-                  <a href="#" className="text-brand-gray hover:text-brand-secondary transition-colors">
-                    <i className="fab fa-dribbble"></i>
+                    <i className="fab fa-github"></i>
                   </a>
                 </div>
               </div>
@@ -247,23 +238,20 @@ const Sobre = () => {
               <div className="relative">
                 <img 
                   src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7" 
-                  alt="Lucas Oliveira - Mobile Developer" 
+                  alt="Lucas Santos Gonçalves" 
                   className="w-full h-64 object-cover object-center group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#182b3e] to-transparent opacity-80"></div>
               </div>
               <div className="p-6 relative -mt-16">
-                <h3 className="text-xl font-bold">Lucas Oliveira</h3>
-                <p className="text-brand-primary mb-4">Mobile Developer</p>
+                <h3 className="text-xl font-bold">Lucas Santos Gonçalves</h3>
+                <p className="text-brand-primary mb-4">Desenvolvedor Front-end</p>
                 <p className="text-brand-gray text-sm mb-4">
-                  Desenvolvedor mobile com foco em React Native, Flutter e experiência em APIs RESTful.
+                  Especialista em desenvolvimento front-end e automação de fluxos com foco em experiência do usuário.
                 </p>
                 <div className="flex space-x-2">
                   <a href="#" className="text-brand-gray hover:text-brand-secondary transition-colors">
                     <i className="fab fa-linkedin-in"></i>
-                  </a>
-                  <a href="#" className="text-brand-gray hover:text-brand-secondary transition-colors">
-                    <i className="fab fa-twitter"></i>
                   </a>
                   <a href="#" className="text-brand-gray hover:text-brand-secondary transition-colors">
                     <i className="fab fa-github"></i>
@@ -277,23 +265,20 @@ const Sobre = () => {
               <div className="relative">
                 <img 
                   src="https://images.unsplash.com/photo-1580489944761-15a19d654956" 
-                  alt="Juliana Ribeiro - Project Manager" 
+                  alt="João Vinnycius Matos Monteiro" 
                   className="w-full h-64 object-cover object-center group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#182b3e] to-transparent opacity-80"></div>
               </div>
               <div className="p-6 relative -mt-16">
-                <h3 className="text-xl font-bold">Juliana Ribeiro</h3>
-                <p className="text-brand-primary mb-4">Project Manager</p>
+                <h3 className="text-xl font-bold">João Vinnycius Matos Monteiro</h3>
+                <p className="text-brand-primary mb-4">Prompt Engineer/Data Analytics</p>
                 <p className="text-brand-gray text-sm mb-4">
-                  Gerente de projetos certificada PMP com experiência em metodologias ágeis e gestão de equipes.
+                  Especialista em engenharia de prompts, Vibe-code e análise de dados para soluções inovadoras.
                 </p>
                 <div className="flex space-x-2">
                   <a href="#" className="text-brand-gray hover:text-brand-secondary transition-colors">
                     <i className="fab fa-linkedin-in"></i>
-                  </a>
-                  <a href="#" className="text-brand-gray hover:text-brand-secondary transition-colors">
-                    <i className="fab fa-twitter"></i>
                   </a>
                   <a href="#" className="text-brand-gray hover:text-brand-secondary transition-colors">
                     <i className="fab fa-github"></i>
@@ -307,53 +292,20 @@ const Sobre = () => {
               <div className="relative">
                 <img 
                   src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04" 
-                  alt="Rafael Silva - Back-end Developer" 
+                  alt="Gustavo Seidi Hono" 
                   className="w-full h-64 object-cover object-center group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#182b3e] to-transparent opacity-80"></div>
               </div>
               <div className="p-6 relative -mt-16">
-                <h3 className="text-xl font-bold">Rafael Silva</h3>
-                <p className="text-brand-primary mb-4">Back-end Developer</p>
+                <h3 className="text-xl font-bold">Gustavo Seidi Hono</h3>
+                <p className="text-brand-primary mb-4">Desenvolvedor Front-end</p>
                 <p className="text-brand-gray text-sm mb-4">
-                  Especialista em arquitetura de APIs, banco de dados e infraestrutura em nuvem (AWS, Azure).
+                  Especialista em desenvolvimento de interfaces e experiências de usuário com foco em usabilidade e design.
                 </p>
                 <div className="flex space-x-2">
                   <a href="#" className="text-brand-gray hover:text-brand-secondary transition-colors">
                     <i className="fab fa-linkedin-in"></i>
-                  </a>
-                  <a href="#" className="text-brand-gray hover:text-brand-secondary transition-colors">
-                    <i className="fab fa-twitter"></i>
-                  </a>
-                  <a href="#" className="text-brand-gray hover:text-brand-secondary transition-colors">
-                    <i className="fab fa-github"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-            
-            {/* Membro 7 */}
-            <div className="bg-[#182b3e] rounded-xl overflow-hidden shadow-lg hover-lift group col-span-1 sm:col-span-2 lg:col-span-2 mx-auto">
-              <div className="relative">
-                <img 
-                  src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd" 
-                  alt="Thiago Mendes - DevOps Engineer" 
-                  className="w-full h-64 object-cover object-center group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#182b3e] to-transparent opacity-80"></div>
-              </div>
-              <div className="p-6 relative -mt-16">
-                <h3 className="text-xl font-bold">Thiago Mendes</h3>
-                <p className="text-brand-primary mb-4">DevOps Engineer</p>
-                <p className="text-brand-gray text-sm mb-4">
-                  Especialista em CI/CD, containers (Docker, Kubernetes) e automação de infraestrutura com experiência em segurança.
-                </p>
-                <div className="flex space-x-2">
-                  <a href="#" className="text-brand-gray hover:text-brand-secondary transition-colors">
-                    <i className="fab fa-linkedin-in"></i>
-                  </a>
-                  <a href="#" className="text-brand-gray hover:text-brand-secondary transition-colors">
-                    <i className="fab fa-twitter"></i>
                   </a>
                   <a href="#" className="text-brand-gray hover:text-brand-secondary transition-colors">
                     <i className="fab fa-github"></i>

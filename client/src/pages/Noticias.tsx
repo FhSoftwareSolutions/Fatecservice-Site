@@ -172,7 +172,7 @@ const Noticias = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 h-full">
                     <div className="relative overflow-hidden h-64 md:h-full">
                       <img 
-                        src={noticia.image} 
+                        src={noticia.image || 'https://images.unsplash.com/photo-1579567761406-4684ee0c75b6?q=80&w=1287&auto=format&fit=crop'} 
                         alt={noticia.title} 
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       />
@@ -246,7 +246,7 @@ const Noticias = () => {
                 >
                   <div className="relative h-48 overflow-hidden">
                     <img 
-                      src={noticia.image} 
+                      src={noticia.image || 'https://images.unsplash.com/photo-1579567761406-4684ee0c75b6?q=80&w=1287&auto=format&fit=crop'} 
                       alt={noticia.title} 
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
@@ -289,59 +289,6 @@ const Noticias = () => {
             </div>
           )}
           
-          {/* Pagination - somente mostrar se houver mais de 9 itens */}
-          {filteredRecent.length > 9 && (
-            <div className="flex justify-center mt-16">
-              <div className="flex space-x-2">
-                <button className="w-10 h-10 rounded-full bg-brand-dark text-white flex items-center justify-center hover:bg-brand-secondary transition-colors duration-300">
-                  <i className="fas fa-chevron-left"></i>
-                </button>
-                <button className="w-10 h-10 rounded-full bg-brand-secondary text-white flex items-center justify-center">1</button>
-                <button className="w-10 h-10 rounded-full bg-brand-dark text-white flex items-center justify-center hover:bg-brand-secondary transition-colors duration-300">2</button>
-                <button className="w-10 h-10 rounded-full bg-brand-dark text-white flex items-center justify-center hover:bg-brand-secondary transition-colors duration-300">3</button>
-                <button className="w-10 h-10 rounded-full bg-brand-dark text-white flex items-center justify-center hover:bg-brand-secondary transition-colors duration-300">
-                  <i className="fas fa-chevron-right"></i>
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* Newsletter Section */}
-      <section className="py-24 px-6 relative overflow-hidden">
-        {/* Background with gradient */}
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-secondary/60 to-brand-primary/60"></div>
-        
-        <div className="container mx-auto relative z-10">
-          <div className="max-w-3xl mx-auto bg-[#182b3e]/90 backdrop-blur-sm p-10 rounded-2xl shadow-xl border border-white/10">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold mb-4">Inscreva-se em nossa <span className="text-brand-primary">Newsletter</span></h2>
-              <p className="text-brand-gray">
-                Receba as últimas notícias, artigos e novidades diretamente no seu e-mail. Não compartilhamos seus dados com terceiros.
-              </p>
-            </div>
-            
-            <form className="flex flex-col sm:flex-row gap-4">
-              <input 
-                type="email" 
-                placeholder="Seu melhor e-mail" 
-                className="flex-1 px-6 py-4 bg-brand-dark text-white rounded-full focus:outline-none focus:ring-2 focus:ring-brand-primary border border-gray-700"
-                required
-              />
-              <button 
-                type="submit" 
-                className="px-8 py-4 bg-brand-primary text-brand-dark font-semibold rounded-full hover:bg-brand-primary-light transition-colors duration-300 btn-animate relative"
-              >
-                <span className="relative z-10">Inscrever-se</span>
-                <i className="fas fa-paper-plane ml-2"></i>
-              </button>
-            </form>
-            
-            <div className="mt-6 text-center text-sm text-brand-gray">
-              Ao se inscrever, você concorda com nossa <a href="#" className="text-brand-primary hover:underline">Política de Privacidade</a>
-            </div>
-          </div>
         </div>
       </section>
     </>
