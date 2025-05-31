@@ -197,7 +197,7 @@ const Sobre = () => {
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.onerror = null;
-                    target.src = 'https://images.unsplash.com/photo-1560250097-0b93528c311a';
+                    target.src = "/src/assets/imagens/mateus-robers.png";
                   }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#182b3e] to-transparent opacity-80"></div>
@@ -238,7 +238,7 @@ const Sobre = () => {
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.onerror = null;
-                    target.src = 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde';
+                    target.src = "/src/assets/imagens/jonah.png";
                   }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#182b3e] to-transparent opacity-80"></div>
@@ -279,7 +279,7 @@ const Sobre = () => {
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.onerror = null;
-                    target.src = 'https://images.unsplash.com/photo-1527980965255-d3b416303d12';
+                    target.src = "/src/assets/imagens/luis.png";
                   }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#182b3e] to-transparent opacity-80"></div>
@@ -320,7 +320,7 @@ const Sobre = () => {
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.onerror = null;
-                    target.src = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d';
+                    target.src = "/src/assets/imagens/cadete.png";
                   }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#182b3e] to-transparent opacity-80"></div>
@@ -356,19 +356,19 @@ const Sobre = () => {
               <div className="relative">
                 <img
                   src="/src/assets/imagens/piaui.png"
-                  alt="João Vinnycius Matos Monteiro"
+                  alt="João Vinnycius Matos Monteiro Ferreira"
                   className="w-full h-64 object-cover object-center group-hover:scale-110 transition-transform duration-500"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.onerror = null;
-                    target.src = 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e';
+                    target.src = "/src/assets/imagens/piaui.png";
                   }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#182b3e] to-transparent opacity-80"></div>
               </div>
               <div className="p-6 relative -mt-16">
                 <h3 className="text-xl font-bold">
-                  João Vinnycius Matos Monteiro
+                  João Vinnycius Matos Monteiro Ferreira
                 </h3>
                 <p className="text-brand-primary mb-4">
                   Prompt Engineer/Data Analytics
@@ -404,7 +404,7 @@ const Sobre = () => {
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.onerror = null;
-                    target.src = 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7';
+                    target.src = "/src/assets/imagens/china.png";
                   }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#182b3e] to-transparent opacity-80"></div>
